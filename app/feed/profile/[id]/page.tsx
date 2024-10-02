@@ -4,18 +4,27 @@ import React from 'react'
 import { useParams } from 'next/navigation';
 
 
-const UserProfile = () => {
-  const { id } = useParams(); // Get the user ID from the URL
+const UserProfile = async () => {
+  const { id } = useParams();
+  let userData;
 
+  try {
+    const response = await fetch(`https://dummyjson.com/users/${id}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    userData = await response.json();
+    console.log("userData", userData)
 
+  } catch (error) {
+    console.error('Error fetching and sorting posts by likes:', error);
+  }
 
-  // const res = await fetch(`https://api.example.com/users/${id}`);
-  // const user = await res.json();
 
   return (
     <main className="container mx-auto">
       <div className="w-full h-[56px] p-[var(--space-12)] pb-[var(--space-12)] px-[var(--space-8)] border-b text-center bg-white">
-        Profile User ID : {id}
+        Profile
       </div>
       <div className="container mx-auto w-full max-w-[700px] h-auto py-8 px-4 gap-12">
         {/*Profile card*/}
@@ -30,13 +39,13 @@ const UserProfile = () => {
             <div className="w-full max-w-[668px] h-auto p-[24px] pl-[170px] gap-[24px] flex bg-white">
               {/* info */}
               <div className="w-[474px] h-auto flex gap-2">
-                <h1 className="font-roboto-flex font-extrabold w-[474px] h-[30px] text-left text-[30px] text-[#141C24]">Emily Johnson</h1>
+                <h1 className="font-roboto-flex font-extrabold w-[474px] h-[30px] text-left text-[30px] text-[#141C24]">{userData.firstName} {userData.lastName}</h1>
                 <div className="w-[268px] h-auto flex gap-3">
                   <div className="flex w-[63px] h-[19px] gap-1">
-                  @emilys
+                    @{userData.username}
                   </div>
                   <div className="flex w-[193px] h-[19px] gap-1">
-                  New York, United States
+                    New York, United States
                   </div>
 
                 </div>

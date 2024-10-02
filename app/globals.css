@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #F9FAFA;
+    --foreground: #000000;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.custom-gradient {
+  background: linear-gradient(102.78deg, #ECE9FB 0.31%, #FDEDE7 82.87%);
+}
+
+.profile-follow-btn {
+  background: linear-gradient(180deg, #FF0073 -114.9%, #811AB8 -51.51%, #4426D9 100%);
+  color: #ffffff;
+}
+

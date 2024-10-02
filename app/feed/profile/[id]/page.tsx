@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import Image from "next/image";
 import React from 'react'
 import { useParams } from 'next/navigation';
@@ -14,7 +14,6 @@ const UserProfile = async () => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     userData = await response.json();
-    console.log("userData", userData)
 
   } catch (error) {
     console.error('Error fetching and sorting posts by likes:', error);
